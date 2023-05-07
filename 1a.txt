@@ -1,0 +1,25 @@
+# decrements one, minumum result is 0
+input: '1'
+blank: ' '
+start state: z0
+table:
+  # scan to the rightmost digit
+  z0:
+    [1,0]: R
+    ' '  : {L: z3}
+  # carry the 1
+  z3:
+    0      : {write: 1, L}
+    1      : {write: 0, L: z2}
+    ' '    : {R: z4}
+  # no carry
+  z2:
+    0      : {write: 0, L}
+    1      : {write: 1, L}
+    ' '    : {R: done}
+  # carry one at the end -> input must be 0
+  z4: 
+    0      : {write: 0, R}
+    1      : {write: 0, R}
+    ' '    : {L: done}
+  done:
