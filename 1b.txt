@@ -1,0 +1,24 @@
+# dya(n)
+# z.B. z2 2 wird nicht erreicht -> dann einfach in endzustand gehen?
+input: '1001'
+blank: ' '
+start state: z0
+table:
+  # scan to the rightmost digit
+  z0:
+    [1,0]: R
+    ' '  : {L: z2}
+  # no carry
+  z2:
+    0      : {write: 2, L: z3}
+    1      : {write: 1, L}
+    ' '    : {R: z4}
+  # carry 1
+  z3:
+    0      : {write: 1, L: z2}
+    1      : {write: 2, L}
+    ' '    : {R: z4}
+  z4: 
+    ' '    : {write: ' ', R}
+    [0, 1, 2] : {write: ' ', R: done} 
+  done:

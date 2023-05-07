@@ -1,0 +1,4 @@
+# 2^x -> x nullen anhängen
+# warum 2^(dya(x)) ?
+# dann setzte letzte |x| ziffern auf x
+
