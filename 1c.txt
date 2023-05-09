@@ -1,4 +1,4 @@
-# 2^x -> x nullen anhängen
-# warum 2^(dya(x)) ?
-# dann setzte letzte |x| ziffern auf x
+2^{log_2(x)} = x
+
+binär verdoppeln -> null anhängen (auch dya?)
 

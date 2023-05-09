@@ -1,24 +1,26 @@
-# dya(n)
-# z.B. z2 2 wird nicht erreicht -> dann einfach in endzustand gehen?
-input: '1001'
+# länge (dya(n)) Eingabe als dyadisch annehmen
+# = für jede ziffer dya inkrementieren
+input: '1212'
 blank: ' '
-start state: z0
+start state: mr
 table:
-  # scan to the rightmost digit
-  z0:
-    [1,0]: R
-    ' '  : {L: z2}
-  # no carry
-  z2:
-    0      : {write: 2, L: z3}
-    1      : {write: 1, L}
-    ' '    : {R: z4}
-  # carry 1
-  z3:
-    0      : {write: 1, L: z2}
-    1      : {write: 2, L}
-    ' '    : {R: z4}
-  z4: 
-    ' '    : {write: ' ', R}
-    [0, 1, 2] : {write: ' ', R: done} 
+  # move right
+  mr: 
+    [1,2] : {R: mr}
+    ' '   : {write: ' ', L: del}
+  del:
+    [1,2] : {write: ' ', L: z1}
+    ' ' : {R: done}
+  
+  z1:
+    [1,2] : {L: z1}
+    ' ' : {L : inc}
+  inc:
+    1 : {write: 2, R: endinc}
+    2 : {write: 1, L: inc}
+    ' ' : {write: 1, R: endinc}
+  endinc:
+    [1,2]: {R: endinc}
+    ' ' : {R: mr}
+  
   done:
