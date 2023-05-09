@@ -1,3 +1,11 @@
-
-
-
+# 1 vorne anhängen, weil je nach stellenzahl um den höchsten exponenten erhöht wird
+input: '2212232'
+blank: ' '
+start state: z0
+table:
+  # 1 anhängen
+  z0: 
+    [1,2] : {L: z1}
+  z1:
+    ' ': {write: '1', L: done}
+  done:

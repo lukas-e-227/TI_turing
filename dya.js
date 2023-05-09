@@ -7,7 +7,7 @@ for (let i = 0; i < 10; i++)
 
 for (let i = 0; i < 20; i++)
 {
-    console.log(`x: ${i} 2^(lg(x)) + x: ${trick(i)}`);
+    console.log(`x: ${dya(i)} 2^(lg(x)) + x: ${dya(trick(i))}`);
 }
 
 function trick(i) 
