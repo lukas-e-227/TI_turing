@@ -7,9 +7,13 @@ for (let i = 0; i < 10; i++)
 
 for (let i = 0; i < 20; i++)
 {
-    console.log("N: " + i + " Dya: " + dya(i) + " log: " + Math.log2(i) + " 2N: " + dya(2 * i));
+    console.log(`x: ${i} 2^(lg(x)) + x: ${trick(i)}`);
 }
 
+function trick(i) 
+{
+    return Math.pow(2, dya(i).length) + i;
+}
 
 function dya(n)
 {
