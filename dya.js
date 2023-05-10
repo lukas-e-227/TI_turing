@@ -4,11 +4,13 @@ for (let i = 0; i < 10; i++)
     console.log("N = " + i + " dya = " + dya(i));
 }
 */
-
+/*
 for (let i = 0; i < 20; i++)
 {
     console.log(`x: ${dya(i)} 2^(lg(x)) + x: ${dya(trick(i))}`);
 }
+*/
+console.log(dya_r("2122"));
 
 function trick(i) 
 {
@@ -42,4 +44,14 @@ function dya(n)
         }
     }
     return dya.reverse().filter((e) => e != ' ');
+}
+
+function dya_r(n)
+{
+    let s = 0;
+    for (let i = 0; i < n.length; i++)
+    {
+        s += parseInt(n[i]) * Math.pow(2,n.length - 1 - i);
+    }
+    return s;
 }

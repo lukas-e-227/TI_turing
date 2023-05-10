@@ -1,1 +1,21 @@
-dyadisch nach binär
+# dyadisch nach binär
+
+input: '2122'
+blank: ' '
+start state: mr
+table:
+  # nach rechts bewegen
+  mr: 
+    [1,2] : {R: mr}
+    ' ' : {L: z1}
+  # kein Übertrag
+  z1: 
+    1 : {write: 1, L: z1}
+    2 : {write: 0, L: z2}
+    ' ': {write: 0, L: done}
+  # mit Übertrag
+  z2:
+    1 : {write: 0, L: z2}
+    2 : {write: 1, L: z2}
+    ' ': {write: 1, L: done}
+  done:
