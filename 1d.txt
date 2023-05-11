@@ -2,3 +2,5 @@
 # (y - (y - x))
 # beide zahlen gleichzeitig dekrementieren bis null oder (y - x) übrig
 # dann nochmal von y abziehen (vorher y kopieren?)
+
+# y auf zweites band kopieren?

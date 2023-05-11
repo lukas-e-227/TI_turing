@@ -4,13 +4,13 @@ for (let i = 0; i < 10; i++)
     console.log("N = " + i + " dya = " + dya(i));
 }
 */
-/*
+
 for (let i = 0; i < 20; i++)
 {
     console.log(`x: ${dya(i)} 2^(lg(x)) + x: ${dya(trick(i))}`);
 }
-*/
-console.log(dya_r("2122"));
+
+//console.log(dya_r("2122"));
 
 function trick(i) 
 {
