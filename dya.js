@@ -9,8 +9,11 @@ for (let i = 0; i < 20; i++)
 {
     console.log(`x: ${dya(i)} 2^(lg(x)) + x: ${dya(trick(i))}`);
 }
+*/
+console.log(dya_r("11111"));
+console.log(dya_r("222"));
+console.log(dya(17));
 
-//console.log(dya_r("2122"));
 
 function trick(i) 
 {
