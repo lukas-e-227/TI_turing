@@ -1,0 +1,32 @@
+
+input: 'abba'
+blank: ' '
+start state: z0
+table:
+	# anfangzustand: gehe nach rechts bis b gefunden oder wort zu ende
+  z0:
+    a: {write : a, R: z0}
+    b: {write : ' ', R: rb}
+    ' ': {L: back2}
+	# b gefunden: erstes b wurde gelöscht, alles danach nach links verschieben
+  rb: 
+    a: {write: ' ', L : ca}
+    b: {write: ' ', L : cb}
+    ' ': {L: back}
+	# kopiere a nach links
+  ca:
+    ' ': {write: 'a', R: skip}
+	# kopiere b nach links
+  cb: 
+    ' ': {write: 'b', R: skip}
+	# überspringe ein leerzeichen wenn gerade kopiert wurde, um zum rest des wortes zu gelangen
+  skip:
+    ' ': {R: rb}
+	# laufe vom ende des wortes zurück, wenn wir ein leerzeichen zu weit rechts sind
+  back:
+    ' ': {L: back2}
+	# laufe zurück nach links wenn der zeiger im wort steht
+  back2:
+    [a,b]: {L: back2}
+    ' ': {R: done}
+  done:

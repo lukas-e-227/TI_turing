@@ -1,0 +1,32 @@
+
+input: 'a'
+blank: ' '
+start state: z0
+table:
+	# versetze jedes a eins nach links bis das erste b kommt, das wird stehen gelassen
+  z0:
+    a : {write: ' ', L: ra}
+    b : {write: b, L: rb}
+    ' ': {L: back2}
+	# kopiere a nach links
+  ra:
+    ' ': {write: a, R: skip}
+	# schreibe b in die lücke
+  rb:
+    ' ': {write: b, R: z2}
+	# überspringe ein leerzeichen nach dem kopieren um zum wort zurückzugelangen
+  skip:
+    ' ': {R: z0}
+	# nachdem das erste b kopiert wurde, wird das wort so stehengelassen
+  z2: 
+    a : {write: a, R: z2}
+    b : {write: b, R: z2}
+    ' ': {L: back}
+	# danach nach links zurücklaufen
+  back:
+    [a,b] : {L: back}
+    ' ' : {R: done}
+	# letztes leerzeichen nach links überspringen, wenn der kopf zu weit rechts war
+  back2: 
+    ' ': {L: back}
+  done:

@@ -1,18 +1,15 @@
-/*
-for (let i = 0; i < 10; i++)
-{
-    console.log("N = " + i + " dya = " + dya(i));
-}
-*/
 
+for (let i = 0; i < 20; i++)
+{
+    console.log("N = " + i + " dya = " + dya(i) + " ad3 = " + ad3(i));
+}
+/*
 for (let i = 0; i < 20; i++)
 {
     console.log(`x: ${dya(i)} 2^(lg(x)) + x: ${dya(trick(i))}`);
 }
 */
-console.log(dya_r("11111"));
-console.log(dya_r("222"));
-console.log(dya(17));
+
 
 
 function trick(i) 
@@ -47,6 +44,39 @@ function dya(n)
         }
     }
     return dya.reverse().filter((e) => e != ' ');
+}
+
+function ad3(n)
+{
+    let ad3 = [' '];
+    for (let i = 0; i < n; i++)
+    {
+        let carry = true;
+        for (let j = 0; j < ad3.length; j++)
+        {
+            if (ad3[j] == ' ' && carry)
+            {
+                ad3[j] = '1';
+                carry = false;
+            }
+            else if (ad3[j] == '1' && carry)
+            {
+                ad3[j] = '2';
+                carry = false;
+            }
+            else if (ad3[j] == '2' && carry)
+            {
+                ad3[j] = '3';
+                carry = false;
+            }
+            else if (ad3[j] == '3' && carry)
+            {
+                ad3[j] = '1';
+                ad3.push(' ');
+            }
+        }
+    }
+    return ad3.reverse().filter((e) => e != ' ');
 }
 
 function dya_r(n)

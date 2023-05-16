@@ -1,57 +1,6 @@
 # siehe blatt 2 minimum
 # (y - (y - x))
-# beide zahlen gleichzeitig x-mal dekrementieren bis null oder (y - x) übrig
-# dann nochmal von y abziehen (vorher y kopieren)
+# beide zahlen gleichzeitig dekrementieren bis null oder (y - x) übrig
+# dann nochmal von y abziehen (vorher y kopieren?)
 
-// 21*1
-
-tapes 2
-// z0 = y kopieren. * ist delimiter symbol für input
-z0 1 _ -> z0 1 1 R R
-z0 2 _ -> z0 2 2 R R 
-z0 * _ -> z1 * * R 0
-
-// 21*1
-// ---^
-// 21*
-// --^
-
-// ab z2: x und y dekrementieren bis x = 0, zeiger 1 steht jetzt auf x
-// z2 = zuerst kopf 1 nach rechts bewegen, kopf 2 steht immer noch auf *
-z2 1 * -> z2 1 * R 0
-z2 2 * -> z2 2 * R 0
-z2 _ * -> z3 _ * L 0
-
-
-// z3 = dekrementieren, Übertrag 1
-z3 1 * -> z3 2 * L 0
-z3 2 * -> z4 1 * L 0 // kein übertrag mehr -> dekrementieren beenden
-z3 * * -> z5 * * R 0 // übertrag 1 am ende -> letzte löschen, null erreicht
-z3 _ * -> z5 _ * R 0
-
-// z4 = dekrementieren beenden: prüfe ob kopf bei y oder x steht
-z4 * * -> z3 * * L 0 // liest * also haben x dekrementiert
-z4 _ * -> z2 _ * R 0 // liest _ also haben y dekrementiert
-
-// z5 = null erreicht, übrige 2 löschen (falls zeiger auf y steht), dann anfangen ergebnis
-// (steht in y) von band 2 abzuziehen
-z5 2 * -> z6 _ * L 0
-
-//   *x
-//-^   (y < x)
-// oder
-// (y-x)*
-//------^ (y > x) konfiguration von band1 nach z5 
-z6 _ * -> z1 _ * 0 0 // ergebnis ist y, steht auf band2
-z6 * * -> z7 * * L L // jetzt y-x von y auf band 2 abziehen
-
-// band 2 - band 1, wie schriftliche subtraktion
-// z7 kein übertrag
-z7 1 1 -> z8 _ 2 L L 
-z7 2 1 -> z8 _ 1 L L
-z7 1 2 -> z7 _ 1 L L 
-z7 2 2 -> z8 _ 2 L L
-
-// z8 mit übertrag
-z8 1 1 -> z8 _ 1 L L 
-z8 2 1 -> 
+# y auf zweites band kopieren?
