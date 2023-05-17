@@ -1,0 +1,31 @@
+input: 'aacaabaabcaba'
+blank: ' '
+start state: z0
+table:
+  z0:
+    a: {write: a, R: z0}
+    b: {write: x, R: rb}
+    c: {write: x, R: rc}
+    ' ': {L: back}
+  rb:
+    a: {write: a, R: rb}
+    b: {write: b, L: rb2}
+    c: {write: b, L: rc2}
+    ' ': {L: rb2}
+  rc:
+    a: {R: rc}
+    b: {write: c, L: rb2}
+    c: {write: c, L: rc2}
+    ' ': {L: rc2}
+  rb2:
+    a: {write: a, L: rb2}
+    x: {write: b, L: back}
+  rc2:
+    a: {write: a, L: rc2}
+    x: {write: c, L: back}
+  back:
+    a: {write: a, L: back}
+    b: {write: b, L: back}
+    c: {write: c, L: back}
+    ' ': {write: ' ', R: done}
+  done: 
