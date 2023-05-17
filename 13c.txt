@@ -1,28 +1,35 @@
+# erste beiden nicht a buchstaben tauschen
 input: 'aacaabaabcaba'
 blank: ' '
 start state: z0
 table:
+  # nach rechts gehen bis nicht a gefunden, diesen markieren
   z0:
     a: {write: a, R: z0}
     b: {write: x, R: rb}
     c: {write: x, R: rc}
     ' ': {L: back}
+  # erstes b gefunden nächstes nicht a suchen
   rb:
     a: {write: a, R: rb}
     b: {write: b, L: rb2}
     c: {write: b, L: rc2}
     ' ': {L: rb2}
+  # erstes c gefunden nächstes nicht a suchen
   rc:
     a: {R: rc}
     b: {write: c, L: rb2}
     c: {write: c, L: rc2}
     ' ': {L: rc2}
+  # zweites nicht a ist b wieder nach links bis zum x laufen, dort schreiben
   rb2:
     a: {write: a, L: rb2}
     x: {write: b, L: back}
+  # zweites nicht a ist c wieder nach links bis zum x laufen, dort schreiben
   rc2:
     a: {write: a, L: rc2}
     x: {write: c, L: back}
+  # zeiger wieder nach links bringen danach ende.
   back:
     a: {write: a, L: back}
     b: {write: b, L: back}
